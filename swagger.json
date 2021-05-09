@@ -6,7 +6,7 @@
         "description": " Node.js IUG Application API"
 
     },
-    "host": "localhost:3000",
+    "host": "https://iug0project.herokuapp.com",
     "basePath": "/api",
     "tags": [{
         "name": "Users",
@@ -15,7 +15,8 @@
         "name":"Admin"
     }],
     "schemes": [
-        "http"
+        "http",
+        "https"
     ],
     "consumes": [
         "application/json"
