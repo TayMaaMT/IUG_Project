@@ -7,15 +7,14 @@ const bodyParser = require('body-parser');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../swagger.json');
 require("./config/db");
-app.use(cors({
-    credentials: true
-}))
 const app = exprss();
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log("your server is running on port " + port);
 })
-
+app.use(cors({
+    credentials: true
+}))
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
