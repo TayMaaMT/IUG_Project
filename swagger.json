@@ -6,7 +6,7 @@
         "description": " Node.js IUG Application API"
 
     },
-    "host": "https://iug0project.herokuapp.com",
+    "host": "iug0project.herokuapp.com",
     "basePath": "/api",
     "tags": [{
         "name": "Users",
