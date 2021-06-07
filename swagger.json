@@ -192,7 +192,49 @@
                 }
             }
         },
+        "/admin/deleteAdvertising": {
+            "delete": {
+                "tags": [
+                    "Admin"
+                ],
+                "description": "admin delete Advertising in system",
+                "operationId": "deleteAdvertising",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "id to delete",
+                        "required": true,
+                        "type": "file"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "token user ",
+                        "schema": {
+                            "token":{
+                                "type":"string"
+                            }
+                        }
+                    }
 
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": " Adding Advertising ",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "sucess": "add Advertising "
+                        }
+                    }
+                }
+            }
+        },
         "/admin/Advertising": {
             "get": {
                 "tags": [

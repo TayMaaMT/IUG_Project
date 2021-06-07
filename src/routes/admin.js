@@ -4,6 +4,7 @@ const {firebaseUpload}=require('../middleware/upload');
 const {  creat,
     find,
     update,
+    delete_
 } = require('../models/user');
 const auth = require('../middleware/auth');
 router.post('/addAdvertising',auth,upload.single('picture'),firebaseUpload,async(req,res)=>{
@@ -19,6 +20,19 @@ router.post('/addAdvertising',auth,upload.single('picture'),firebaseUpload,async
         res.status(400).send(`Error : ${error}`);
         return;
       }
+});
+
+router.delete('/deleteAdvertising',firebaseUpload,async(req,res)=>{
+  try {
+      const user_id = req.id;
+      const { id } = req.body;
+      const user = await find('users', { id: user_id });
+      await delete_('advertising', { id });
+      res.status(200).send({ success:"delete advertising" });
+    } catch (error) {
+      res.status(400).send(`Error : ${error}`);
+      return;
+    }
 });
 router.get('/Advertising',auth,async(req,res)=>{
     try {
