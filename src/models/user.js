@@ -10,7 +10,6 @@ const creat = async(table, data) => {
             return data[key];
         });
         const QueryUser = CreatQuery(table, data);
-        console.log(QueryUser,colval);
         const { rows } = await db.query(`${QueryUser}`, colval);
         return rows[0].id;
     } catch (err) {
@@ -20,13 +19,13 @@ const creat = async(table, data) => {
 }
 
 
-const find = async(table, data) => {
+const find = async(table,data, type) => {
     try {
         if (data) {
             const colval = Object.keys(data).map(function(key) {
                 return data[key];
             });
-            const SelectQuery = SelectQuerytable(table, data);
+            const SelectQuery = SelectQuerytable(table,data, type);
             const { rows } = await db.query(`${SelectQuery}`, colval);
             return rows;
         } else {
@@ -63,7 +62,6 @@ const update = async(table, where, data) => {
             return data[key];
         });
         const UpdateQuery = UpdateQuerytable(table, where, data);
-        console.log(colval);
         await db.query(`${UpdateQuery}`, colval);
         return ;
     } catch (err) {
@@ -114,6 +112,7 @@ const findByCredentials = async(idIug , password) => {
             console.log("why");
             throw "Unable to login ";
         }
+   
         return user[0].id;
     } catch (err) {
         console.log(err);

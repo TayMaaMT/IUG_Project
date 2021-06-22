@@ -12,7 +12,23 @@ router.get('/users', auth,async(req, res) => {
         res.status(400).json({ Error: err });
     }
 })
-
+router.get('/notification', auth,async(req, res) => {
+    try {
+        const id =req.id;
+        const notification = await find('notification',{user_id:id,all_user:true},'or');
+        res.status(200).json({ notification });
+    } catch (err) {
+        res.status(400).json({ Error: err });
+    }
+})
+router.get('/users', auth,async(req, res) => {
+    try {
+        const users = await find('notification',{});
+        res.status(200).json({ users });
+    } catch (err) {
+        res.status(400).json({ Error: err });
+    }
+})
 router.post('/signup', async(req, res) => {
     try {
         const { name, email,idIug , password,department,specialization } = req.body;
@@ -30,6 +46,7 @@ router.post('/signup', async(req, res) => {
 router.post('/login', async(req, res) => {
     try {
         const { idIug , password } = req.body;
+        console.log(idIug , password)
         const user_id = await findByCredentials(idIug , password);
         const token = genarateAuthToken(user_id);
         res.status(200).json({ token: token });
@@ -37,4 +54,6 @@ router.post('/login', async(req, res) => {
         res.status(400).json({ Error: "Unable to login" })
     }
 })
+
+
 module.exports = router;

@@ -20,7 +20,7 @@ const CreatQuery = (table, cols) => {
     return query.join(' ');
 }
 
-const SelectQuerytable = (table, cols) => {
+const SelectQuerytable = (table,cols, type) => {
     // beginning of select query
     let query = ['SELECT * FROM'];
     query.push(table);
@@ -30,8 +30,12 @@ const SelectQuerytable = (table, cols) => {
     Object.keys(cols).forEach(function(key, i) {
         set.push(key + ' = $' + (i + 1));
     });
-
-    query.push(set.join(' AND '));
+    if(type=="or"){
+        query.push(set.join(' OR '));
+    }else{
+        query.push(set.join(' AND '));
+    }
+    
     // Return a complete query string
 
     return query.join(' ');
